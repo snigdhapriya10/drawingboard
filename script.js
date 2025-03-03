@@ -1,21 +1,9 @@
-const canvas = document.querySelector("canvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const canvas = document.querySelector("canvas"),
+ctx=canvas.getContext("2d");
 
 const drawing = (e) => {
-    ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.stroke();
+    ctx.lineTo(e.offsetX, e.offsetY); //line where mouse pointer goes
+    ctx.stroke(); //fills line with colour
 }
 
-const startDrawing = (e) => {
-    ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
-    canvas.addEventListener("mousemove", drawing);
-}
-
-canvas.addEventListener("mousedown", startDrawing);
-canvas.addEventListener("mouseup", () => {
-    canvas.removeEventListener("mousemove", drawing);
-});
+canvas.addEventListener("mousemove",drawing);
