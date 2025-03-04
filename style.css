@@ -46,6 +46,7 @@ section{
 }
 .option :where(span,label){
     color: #5A6168;
+    cursor:pointer;
     padding-left: 10px;
 }
 .option:is(:hover, .active):where(span,label){
@@ -53,8 +54,9 @@ section{
 }
 
 .option #fill-color{
-    height: 16px;
-    width: 16px;
+    cursor: pointer;
+    height: 14px;
+    width: 14px;
 }
 #fill-color:checked ~ label{
     color: #4A98F7;
