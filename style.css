@@ -9,9 +9,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vhl;
-    background: #4A98F7;
+    min-height: 100vh;
+    background: #c164ec;
 }
+
 .container{
     display: flex;
     width:100%;
@@ -42,31 +43,34 @@ section{
     margin-bottom:10px;
 }
 .option:is(:hover, .active) img{
-    filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+    filter: invert(69%) sepia(79%) saturate(5175%) hue-rotate(242deg) brightness(97%) contrast(91%);
 }
 .option :where(span,label){
-    color: #5A6168;
+    color: #292c30;
     cursor:pointer;
     padding-left: 10px;
 }
-.option:is(:hover, .active):where(span,label){
-    color: #4A98F7;
+.option:is(:hover, .active) span,
+.option:is(:hover, .active) label {
+    color:#c164ec;;
 }
 
 .option #fill-color{
     cursor: pointer;
     height: 14px;
     width: 14px;
+    accent-color: #c164ec;
 }
 #fill-color:checked ~ label{
-    color: #4A98F7;
+    color: #c164ec;
 }
 .option #size-slider{
     width: 100%;
     height: 5px;
     margin-top:10px;
+    accent-color:#c164ec;
 }
-.colors .otpion{
+.colors .options{
     display: flex;
     justify-content: space-between;
 }
@@ -93,7 +97,7 @@ section{
 .colors .option:nth-child(5){
     background: #6DD400;
 }
-.colors .option:hover::before{
+.colors .option.selected::before{
     position: absolute;
     content: "";
     top: 50%;
@@ -105,7 +109,7 @@ section{
     border: 2px solid #fff;
     transform: translate(-50%, -50%);
 }
-.colors .option:last-child.selected::before{
+.colors .option:first-child.selected::before{
     border-color: #ccc;
 }
 .option #color-picker{
@@ -122,6 +126,7 @@ section{
     margin-bottom: 13px;
     background: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 .buttons .clear-canvas{
     color: #6C7570;
@@ -133,8 +138,8 @@ section{
     background:#6C7570;
 }
 .buttons .save-img{
-    background: #4A98F8;
-    border: 1px solid #4A98F8;
+    background: #c164ec;
+    border: 1px solid #c164ec;
 }
 .drawing-board{
     flex: 1;
