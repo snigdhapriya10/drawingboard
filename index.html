@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" dir="lte">
+<html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
         <title>Drawing Board</title>
         <link rel="stylesheet" href="style.css">
-        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="script.js" defer></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container ">
             <section class="tools-board">
                 <div class="row">
                     <label class="title">Shapes</label>
@@ -33,11 +34,11 @@
                 <div class="row">
                     <label class="title">Options</label>
                     <ul class="options">
-                        <li class="option active">
+                        <li class="option tool-option active">
                             <img src="icons/brush.svg" alt="">
                             <span>Brush</span>
                         </li>
-                        <li class="option">
+                        <li class="option tool-option">
                             <img src="icons/eraser.svg" alt="">
                             <span>Eraser</span>
                         </li>
@@ -64,6 +65,10 @@
                     <button class="save-img">Save as Image</button>
                 </div>
             </section>
-            <section class="drawing-board"></section>
+            <section class="drawing-board">
+                <canvas>
+
+                </canvas>
+            </section>
     </body>
 </html>
