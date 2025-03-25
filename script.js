@@ -2,12 +2,16 @@ const canvas = document.querySelector("canvas"),
 toolBtns=document.querySelectorAll(".tool"),
 fillColor=document.querySelector("#fill-color"),
 sizeSlider=document.querySelector("#size-slider"),
+colorBtns=document.querySelectorAll(".colors .option"),
+colorPicker=document.querySelector("#color-picker"),
+clearCanvas=document.querySelector(".clear-canvas"),
 ctx=canvas.getContext("2d");
 //global variables with default value
 let prevMouseX,prevMouseY, snapshot,
 isDrawing=false,
 selectedTool = "brush",
-brushWidth=5;
+brushWidth=5,
+selectedColor="#000";
 
 window.addEventListener("load",() => {
     //setting canvas width/height..offsetwidth/height returns viweable width/height of an element
@@ -45,16 +49,18 @@ const startDraw =(e)=>{
     prevMouseY=e.offsetY;
     ctx.beginPath(); //creating new path to draw
     ctx.lineWidth=brushWidth; //passing brushwidth as linewidth
+    ctx.strokeStyle=selectedColor; //passing selectedColor as stroke style
+    ctx.fillStyle=selectedColor; //passing selectedColor as fill style
     //copying canvas data and passing as snapshot value.. this avoids dragging the image
     snapshot=ctx.getImageData(0 , 0,canvas.width,canvas.height);
 }
-
 
 const drawing = (e) => {
     if (!isDrawing) return; //if isDrawing is false return from here
     ctx.putImageData(snapshot, 0, 0); //adding copied canvas data on to this canvas
     
-    if (selectedTool ==="brush"){ 
+    if (selectedTool ==="brush" || selectedTool ==="eraser"){ 
+        ctx.strokeStyle=selectedTool==="eraser"?"#fff":selectedColor;
     ctx.lineTo(e.offsetX, e.offsetY); //line where mouse pointer goes
     ctx.stroke(); //fills line with colour
     }
@@ -81,6 +87,27 @@ toolBtns.forEach(btn => {
 });
 
 sizeSlider.addEventListener("change",()=>brushWidth=sizeSlider.value); //passing slider value as brush size 
+
+colorBtns.forEach(btn => {
+    btn.addEventListener("click",()=>{ //adding click event to all color button 
+     //removing active class from the previous option and adding on current clicked option
+     document.querySelector(".options .selected").classList.remove("selected");
+     btn.classList.add("selected");
+     //passing selected btn background color as selectedcolor value
+     selectedColor=window.getComputedStyle(btn).getPropertyValue("background-color");
+     console.log("Selected color:", color); // Debug log
+     selectedColor = color; // Correct assignment
+    });
+});
+colorPicker.addEventListener("change",()=>{
+    colorPicker.parentElement.style.background=colorPicker.value;
+    colorPicker.parentElement.click();
+});
+
+clearCanvas.addEventListener("click",()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height); //clear whole canvas 
+});
+
 canvas.addEventListener("mousedown",startDraw);
 canvas.addEventListener("mousemove",drawing);
 canvas.addEventListener("mouseup",()=> isDrawing=false);
